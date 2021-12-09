@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+ThemeData theme = ThemeData(
+  fontFamily: 'Sana',
+  primaryColor: MyColors.primary,
+);
+
 class MyColors {
   static const Color backgroundPage = const Color(0xff282828);
   static const Color primary = const Color(0xff46e288);

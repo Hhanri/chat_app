@@ -78,10 +78,10 @@ flutter:
   fonts:
     - family: 'PureBold'
       fonts:
-        - assets: assets/fonts/Pure-BoldDuranGo.ttf
+        - asset: assets/fonts/Pure-BoldDuranGo.ttf
     - family: 'Sana'
       fonts:
-        - assets: assets/fonts/Sana Sans Alt W00 Regular.ttf
+        - asset: assets/fonts/Sana Sans Alt W00 Regular.ttf
           weight: 500
   #
   # For details regarding fonts from package dependencies,
