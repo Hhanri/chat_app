@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 ThemeData theme = ThemeData(
   fontFamily: 'Sana',
   primaryColor: MyColors.primary,
+  scaffoldBackgroundColor: MyColors.backgroundPage,
+  appBarTheme: AppBarTheme(
+    backgroundColor: MyColors.containerColor
+  ),
+  textTheme: TextTheme(
+    headline1: MyTextStyles.title1,
+    bodyText1: MyTextStyles.body,
+    button: MyTextStyles.buttonPlaceHolder,
+  ),
+  hoverColor: MyColors.hover,
+  iconTheme: IconThemeData(
+    color: MyColors.iconColor
+  ),
+  buttonColor: MyColors.primary
 );
 
 class MyColors {

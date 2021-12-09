@@ -1,3 +1,4 @@
+import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Chat App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme,
       debugShowCheckedModeBanner: false,
       home: const SignInScreen(),
     );
