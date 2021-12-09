@@ -1,4 +1,5 @@
 class Strings {
+
   //General
   static const String titleApp = "Chat App";
 
@@ -20,4 +21,10 @@ class Strings {
   static const String tapMessage = "Tapez votre message…";
   static const String search = "Recherchez...";
   static const String exampleDate = "13/05/21 - 18:50";
+}
+
+
+class ImagesPath {
+
+  static const String logo = "assets/images/Logo-App-Createur-Pro-sombre.png";
 }

@@ -10,9 +10,12 @@ ThemeData theme = ThemeData(
   textTheme: TextTheme(
     headline1: MyTextStyles.title1,
     bodyText1: MyTextStyles.body,
-    button: MyTextStyles.buttonPlaceHolder,
+    bodyText2: MyTextStyles.body
   ),
   hoverColor: MyColors.hover,
+  buttonTheme: ButtonThemeData(
+    buttonColor: Colors.white,
+  ),
   iconTheme: IconThemeData(
     color: MyColors.iconColor
   ),
@@ -34,7 +37,7 @@ class MyTextStyles {
     fontFamily: 'PureBold',
     fontSize: 40,
     color: const Color(0xffffffff),
-    letterSpacing: -0.48,
+    letterSpacing: 1.5,
     fontWeight: FontWeight.w700,
   );
 
@@ -42,14 +45,12 @@ class MyTextStyles {
     fontFamily: 'Sana',
     fontSize: 18,
     color: MyColors.bodyText,
-    letterSpacing: -0.14,
   );
 
   static const TextStyle buttonPlaceHolder = const TextStyle(
     fontFamily: 'Sana',
     fontSize: 21,
     color: const Color(0xff898989),
-    letterSpacing: -0.168,
     shadows: [
       Shadow(
         color: const Color(0x29000000),
@@ -63,7 +64,6 @@ class MyTextStyles {
     fontFamily: 'Sana',
     fontSize: 18,
     color: MyColors.primary,
-    letterSpacing: -0.14,
   );
 
   static const TextStyle date = const TextStyle(
@@ -71,4 +71,14 @@ class MyTextStyles {
     fontSize: 8,
     color: const Color(0xff717171)
   );
+}
+
+class MyShapes {
+
+  static BorderRadiusGeometry circularBorders = BorderRadius.circular(38.0);
+
+}
+
+class MySizes {
+  static double minimumHeightInput = 50;
 }
