@@ -1,5 +1,6 @@
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/screens/sign_in_screen.dart';
+import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Chat App',
       theme: theme,
       debugShowCheckedModeBanner: false,
+      initialRoute: SIGN_IN_PAGE,
+      onGenerateRoute: RouteGenerator.generateRoute,
       home: const SignInScreen(),
     );
   }

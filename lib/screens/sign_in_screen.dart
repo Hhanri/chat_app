@@ -1,5 +1,6 @@
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
+import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/utils/app_config.dart';
 import 'package:chat_app/widgets/button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,7 +56,7 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   Text(Strings.noAccount),
                   TextButton(
-                    onPressed: () => print("S'inscrire"),
+                    onPressed: () =>  Navigator.pushNamed(context, SIGN_UP_PAGE),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),
