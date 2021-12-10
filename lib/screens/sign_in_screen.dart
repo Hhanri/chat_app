@@ -53,6 +53,7 @@ class SignInScreen extends StatelessWidget {
                 height: 20
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(Strings.noAccount),
                   TextButton(

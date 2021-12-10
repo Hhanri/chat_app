@@ -1,14 +1,16 @@
-import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
+import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
 
   final String hintText;
+  final IconWidget? icon;
 
   const TextFieldWidget({
     Key? key,
     required this.hintText,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -23,13 +25,18 @@ class TextFieldWidget extends StatelessWidget {
         minHeight: MySizes.minimumHeightInput,
       ),
       child: TextField(
-          decoration: InputDecoration(
-            fillColor: MyColors.containerColor,
-            hintText: hintText,
-            hintStyle: MyTextStyles.buttonPlaceHolder,
-            contentPadding: EdgeInsets.symmetric(horizontal: 21),
-            border: InputBorder.none,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          fillColor: MyColors.containerColor,
+          hintText: hintText,
+          hintStyle: MyTextStyles.buttonPlaceHolder,
+          contentPadding: EdgeInsets.symmetric(horizontal: 21),
+          border: InputBorder.none,
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 21.0),
+            child: icon,
           )
+        )
       ),
     );
   }

@@ -6,7 +6,7 @@ class Strings {
   static const String email = "Email";
   static const String password = "Mot de passe";
   static const String name = "Nom";
-  static const String dateSelect = "Sélectionnez une date";
+  static const String birthday = "Date de Naissance";
 
   //Authentication
   static const String forgetPassword = "Mot de passe oublié ?";
