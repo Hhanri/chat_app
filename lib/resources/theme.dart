@@ -19,7 +19,16 @@ ThemeData theme = ThemeData(
   iconTheme: IconThemeData(
     color: MyColors.iconColor
   ),
-  buttonColor: MyColors.primary
+  buttonColor: MyColors.primary,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: TextButton.styleFrom(
+      backgroundColor: MyColors.primary,
+      textStyle: MyTextStyles.buttonText,
+      shape: RoundedRectangleBorder(
+        borderRadius: MyShapes.circularBorders
+      )
+    )
+  )
 );
 
 class MyColors {
@@ -35,7 +44,7 @@ class MyTextStyles {
 
   static const TextStyle title1 = const TextStyle(
     fontFamily: 'PureBold',
-    fontSize: 40,
+    fontSize: 34,
     color: const Color(0xffffffff),
     letterSpacing: 1.5,
     fontWeight: FontWeight.w700,
@@ -51,6 +60,19 @@ class MyTextStyles {
     fontFamily: 'Sana',
     fontSize: 21,
     color: const Color(0xff898989),
+    shadows: [
+      Shadow(
+        color: const Color(0x29000000),
+        offset: Offset(0,3),
+        blurRadius: 6,
+      )
+    ]
+  );
+
+  static const TextStyle buttonText = const TextStyle(
+    fontFamily: 'Sana',
+    fontSize: 21,
+    color: Colors.white,
     shadows: [
       Shadow(
         color: const Color(0x29000000),
@@ -80,5 +102,5 @@ class MyShapes {
 }
 
 class MySizes {
-  static double minimumHeightInput = 50;
+  static double minimumHeightInput = 55;
 }

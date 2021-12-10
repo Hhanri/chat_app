@@ -10,17 +10,22 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(
-        minHeight: MySizes.minimumHeightInput,
+    return ElevatedButton(
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        constraints: BoxConstraints(
+          minHeight: MySizes.minimumHeightInput,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: MyShapes.circularBorders,
+          color: MyColors.primary
+        ),
+        child: Text(
+          buttonText
+        )
       ),
-      decoration: BoxDecoration(
-        borderRadius: MyShapes.circularBorders,
-        color: MyColors.primary
-      ),
-      child: Text(
-        buttonText
-      )
+      onPressed: () => print("Se connecter"),
     );
   }
 }

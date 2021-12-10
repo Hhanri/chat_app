@@ -1,5 +1,6 @@
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
+import 'package:chat_app/utils/app_config.dart';
 import 'package:chat_app/widgets/button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,24 +12,73 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Image.asset(ImagesPath.logo),
-          Text(
-            Strings.titleApp,
-            style: Theme.of(context).textTheme.headline1,
+      body: SingleChildScrollView(
+        child: Container(
+          height: AppConfig.heightScreen(context),
+          padding: const EdgeInsets.symmetric(
+            vertical: 6.0,
+            horizontal: 39
           ),
-          TextFieldWidget(hintText: Strings.email),
-          TextFieldWidget(hintText: Strings.password),
-          ButtonWidget(buttonText: Strings.signIn),
-          Row(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(Strings.noAccount),
-              Text(Strings.signUp)
+              Spacer(),
+              Expanded(
+                flex: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(ImagesPath.logo),
+                )
+              ),
+              Expanded(
+                child: Text(
+                  Strings.titleApp,
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ),
+              Spacer(),
+              Expanded(
+                flex: 6,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextFieldWidget(hintText: Strings.email),
+                    TextFieldWidget(hintText: Strings.password),
+                    ButtonWidget(buttonText: Strings.signIn),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20
+              ),
+              Row(
+                children: [
+                  Text(Strings.noAccount),
+                  TextButton(
+                    onPressed: () => print("S'inscrire"),
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(" " + Strings.signUp,
+                      style: MyTextStyles.bodyLink,
+                    ),
+                  )
+                ]
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () => print("Mot de passe oublié"),
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
+                child: Text(Strings.forgetPassword,
+                  style: MyTextStyles.bodyLink
+                ),
+              ),
+              Spacer(),
             ]
           ),
-          Text(Strings.forgetPassword)
-        ]
+        ),
       )
     );
   }
