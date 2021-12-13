@@ -6,11 +6,15 @@ class TextFieldWidget extends StatelessWidget {
 
   final String hintText;
   final IconWidget? icon;
+  final bool? password;
+  final bool? email;
 
   const TextFieldWidget({
     Key? key,
     required this.hintText,
     this.icon,
+    this.password,
+    this.email,
   }) : super(key: key);
 
   @override
@@ -25,6 +29,10 @@ class TextFieldWidget extends StatelessWidget {
         minHeight: MySizes.minimumHeightInput,
       ),
       child: TextField(
+        autocorrect: (email == true || password == true) ? false : true,
+        enableSuggestions: (email == true || password == true) ? false : true,
+        obscureText: (password == true) ? true : false,
+        style: MyTextStyles.body,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           fillColor: MyColors.containerColor,

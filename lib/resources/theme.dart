@@ -89,10 +89,16 @@ class MyTextStyles {
     color: MyColors.primary,
   );
 
-  static const TextStyle date = const TextStyle(
+  static const TextStyle dateChatScreen = const TextStyle(
     fontFamily: 'Hiragino Sans',
     fontSize: 8,
     color: const Color(0xff717171)
+  );
+
+  static const TextStyle dateMessagesScreen = const TextStyle(
+    fontFamily: 'Hiragino Sans',
+    fontSize: 11,
+    color: MyColors.bodyText
   );
 }
 
