@@ -2,7 +2,6 @@ class Strings {
 
   //General
   static const String titleApp = "Chat App";
-
   static const String email = "Email";
   static const String password = "Mot de passe";
   static const String name = "Nom";
@@ -18,8 +17,9 @@ class Strings {
   static const String acceptConditions = "J’accepte les conditions d’utilisation";
 
   //Messages
+  static const String messagesTitle = "Messages";
   static const String tapMessage = "Tapez votre message…";
-  static const String search = "Recherchez...";
+  static const String search = "Rechercher...";
   static const String exampleDate = "13/05/21 - 18:50";
 }
 

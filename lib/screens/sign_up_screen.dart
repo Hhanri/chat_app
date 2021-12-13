@@ -40,7 +40,9 @@ class SignUpScreen extends StatelessWidget {
                         TextFieldWidget(hintText: Strings.password),
                         TextFieldWidget(hintText: Strings.name),
                         TextFieldWidget(hintText: Strings.birthday, icon: IconWidget(icon: Icons.calendar_today)),
-                        ButtonWidget(buttonText: Strings.signUp),
+                        ButtonWidget(
+                          buttonText: Strings.signUp,
+                          onPressed: () => print("s'inscrire"),),
                       ],
                     ),
                   ),

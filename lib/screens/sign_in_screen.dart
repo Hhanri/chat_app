@@ -45,7 +45,9 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     TextFieldWidget(hintText: Strings.email),
                     TextFieldWidget(hintText: Strings.password),
-                    ButtonWidget(buttonText: Strings.signIn),
+                    ButtonWidget(
+                      buttonText: Strings.signIn,
+                      onPressed:() => Navigator.pushNamed(context, MESSAGES_PAGE,),)
                   ],
                 ),
               ),
