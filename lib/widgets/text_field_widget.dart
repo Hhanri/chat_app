@@ -8,6 +8,7 @@ class TextFieldWidget extends StatelessWidget {
   final IconWidget? icon;
   final bool? password;
   final bool? email;
+  final TextStyle? textStyle;
 
   const TextFieldWidget({
     Key? key,
@@ -15,7 +16,9 @@ class TextFieldWidget extends StatelessWidget {
     this.icon,
     this.password,
     this.email,
-  }) : super(key: key);
+    TextStyle? textStyle,
+  }) :  this.textStyle = textStyle ?? MyTextStyles.buttonPlaceHolder,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

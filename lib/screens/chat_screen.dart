@@ -1,6 +1,8 @@
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
+import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:chat_app/widgets/message_container_widget.dart';
+import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -36,26 +38,74 @@ class ChatScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 30.0),
-            child: Column(
-              crossAxisAlignment: (index%2 == 0) ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 11,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15),
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: Column(
+                      crossAxisAlignment: (index%2 == 0) ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: Text(
+                            Strings.exampleDate,
+                            style: MyTextStyles.dateChatScreen,
+                          ),
+                        ),
+                        MessageContainerWidget(isCurrentUser: (index%2 == 0) ? true : false),
+                      ],
+                    ),
+                  );
+                }
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: Text(
-                    Strings.exampleDate,
-                    style: MyTextStyles.dateChatScreen,
-                  ),
+                Spacer(),
+                Expanded(
+                  flex: 18,
+                  child: TextFieldWidget(
+                    hintText: Strings.tapMessage,
+                    icon: IconWidget(icon: Icons.camera_alt_rounded),
+                    textStyle: MyTextStyles.buttonPlaceHolder.copyWith(
+                      fontSize: 18
+                    ),
+                  )
                 ),
-                MessageContainerWidget(isCurrentUser: (index%2 == 0) ? true : false),
+                Spacer(),
+                Expanded(
+                  flex: 3,
+                  child: SizedBox(
+                    height: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Icon(Icons.send_sharp),
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap
+                      ),
+                    ),
+                  )
+                ),
+                Spacer()
               ],
             ),
-          );
-        }
+          ),
+          SizedBox(
+            height: 20
+          )
+        ],
       ),
     );
   }
