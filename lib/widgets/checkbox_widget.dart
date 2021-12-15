@@ -11,16 +11,19 @@ class CheckboxWidget extends StatefulWidget {
 }
 
 class _CheckboxWidgetState extends State<CheckboxWidget> {
+
+  bool? checked = false;
+
   @override
   Widget build(BuildContext context) {
     return Checkbox(
         shape: RoundedRectangleBorder(
             borderRadius: MyShapes.checkboxBorders
         ),
-        value: false,
+        value: checked,
         onChanged: (value) {
           setState(() {
-            value = value;
+            this.checked = value;
           });
         }
     );

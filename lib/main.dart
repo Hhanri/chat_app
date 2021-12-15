@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Chat App',
       theme: theme,
       debugShowCheckedModeBanner: false,
-      initialRoute: SIGN_IN_PAGE,
+      initialRoute: "/",
       onGenerateRoute: RouteGenerator.generateRoute,
       home: const SignInScreen(),
     );

@@ -67,7 +67,11 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       Text(Strings.alreadyAccount),
                       TextButton(
-                        onPressed: () =>  Navigator.pushNamed(context, SIGN_IN_PAGE),
+                        onPressed: () =>  Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          SIGN_IN_PAGE,
+                          (Route<dynamic> route) => false
+                        ),
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                         ),

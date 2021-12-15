@@ -91,7 +91,7 @@ class MyTextStyles {
 
   static const TextStyle dateChatScreen = const TextStyle(
     fontFamily: 'Hiragino Sans',
-    fontSize: 8,
+    fontSize: 13,
     color: const Color(0xff717171)
   );
 
@@ -106,6 +106,8 @@ class MyShapes {
 
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(38.0);
   static BorderRadiusGeometry checkboxBorders = BorderRadius.circular(5.0);
+  static Radius radiusCircular = Radius.circular(38.0);
+  static Radius radiusCircularZero = Radius.circular(0);
 
 }
 

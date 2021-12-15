@@ -53,7 +53,8 @@ class SignInScreen extends StatelessWidget {
                     ),
                     ButtonWidget(
                       buttonText: Strings.signIn,
-                      onPressed:() => Navigator.pushNamed(context, MESSAGES_PAGE,),)
+                      onPressed:() => Navigator.pushReplacementNamed(context, MESSAGES_PAGE,)
+                    )
                   ],
                 ),
               ),
