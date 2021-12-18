@@ -5,6 +5,7 @@ import 'package:chat_app/screens/messages_screen.dart';
 import 'package:chat_app/screens/sign_in_screen.dart';
 import 'package:chat_app/screens/sign_up_screen.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
+import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,16 +31,7 @@ class MyApp extends StatelessWidget {
       builder: (initFirebaseContext, snapshot) {
         //Check for errors
         if (snapshot.hasError){
-          showDialog(
-            context: initFirebaseContext,
-            builder: (_) {
-              return Dialog(
-                child: Text(
-                  Strings.errorFirebaseInit
-                )
-              );
-            }
-          );
+          NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
         }
         //Once completed, show app
         if (snapshot.connectionState == ConnectionState.done) {
@@ -49,15 +41,15 @@ class MyApp extends StatelessWidget {
             ],
             builder: (providerContext, widget) {
               return MaterialApp(
-                title: 'Chat App',
+                title: Strings.titleApp,
                 theme: theme,
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: RouteGenerator.generateRoute,
                 home: StreamBuilder(
                   stream: AuthenticationProvider().userState,
-                  builder: (authStreamcontext, snapshot) {
+                  builder: (authStreamContext, snapshot) {
                     if (snapshot.hasError) {
-                      //show dialog error
+                      NavigationUtils.showMyDialog(context: authStreamContext, bodyText: Strings.errorAuthStream);
                       return SignInScreen();
                     } else {
                       if (snapshot.connectionState == ConnectionState.waiting) {

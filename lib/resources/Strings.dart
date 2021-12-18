@@ -6,6 +6,7 @@ class Strings {
   static const String password = "Mot de passe";
   static const String name = "Nom";
   static const String birthday = "Date de Naissance";
+  static const String ok = "OK";
 
   //Authentication
   static const String forgetPassword = "Mot de passe oublié ?";
@@ -23,7 +24,9 @@ class Strings {
   static const String exampleDate = "13/05/21 - 18:50";
 
   //Errors
+  static const String error = "Erreur";
   static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
+  static const String errorAuthStream = "Erreur lors de la récupération des utilisateurs";
 }
 
 
