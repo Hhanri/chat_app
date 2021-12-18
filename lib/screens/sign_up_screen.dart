@@ -36,10 +36,21 @@ class SignUpScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextFieldWidget(hintText: Strings.email, email: true),
-                        TextFieldWidget(hintText: Strings.password, password: true),
-                        TextFieldWidget(hintText: Strings.name),
-                        TextFieldWidget(hintText: Strings.birthday, icon: IconWidget(icon: Icons.calendar_today)),
+                        TextFieldWidget(
+                          textFieldParameters: EmailTextFieldParameters(),
+                        ),
+                        TextFieldWidget(
+                          textFieldParameters: PasswordTextFieldParameters(),
+                        ),
+                        TextFieldWidget(
+                          textFieldParameters: NameTextFieldParameters(),
+                        ),
+                        TextFieldWidget(
+                          textFieldParameters: TextFieldParamaters(
+                            hintText: Strings.birthday,
+                            iconWidget: IconWidget(icon: Icons.calendar_today)
+                          ),
+                        ),
                         ButtonWidget(
                           buttonText: Strings.signUp,
                           onPressed: () => print("s'inscrire"),),

@@ -44,12 +44,10 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextFieldWidget(
-                      hintText: Strings.email,
-                      email: true
+                      textFieldParameters: EmailTextFieldParameters(),
                     ),
                     TextFieldWidget(
-                      hintText: Strings.password,
-                      password: true
+                      textFieldParameters: PasswordTextFieldParameters(),
                     ),
                     ButtonWidget(
                       buttonText: Strings.signIn,

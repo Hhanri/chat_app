@@ -29,6 +29,30 @@ ThemeData theme = ThemeData(
         borderRadius: MyShapes.circularBorders
       )
     )
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    fillColor: MyColors.containerColor,
+    filled: true,
+    hintStyle: MyTextStyles.formPlaceHolder,
+    contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 17),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: MyColors.primary,
+        style: BorderStyle.solid,
+        width: 1
+      ),
+      borderRadius: BorderRadius.all(
+        MyShapes.radiusCircular
+      ),
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(
+        MyShapes.radiusCircular
+      )
+    ),
+  ),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: MyColors.primary
   )
 );
 
@@ -39,6 +63,7 @@ class MyColors {
   static const Color containerColor = const Color(0xff474747);
   static const Color bodyText = const Color(0xffc4c4c4);
   static const Color iconColor = const Color(0xff808080);
+  static const Color hintColor = const Color(0xff898989);
 }
 
 class MyTextStyles {
@@ -57,10 +82,10 @@ class MyTextStyles {
     color: MyColors.bodyText,
   );
 
-  static const TextStyle buttonPlaceHolder = const TextStyle(
+  static const TextStyle formPlaceHolder = const TextStyle(
     fontFamily: 'Sana',
     fontSize: 21,
-    color: const Color(0xff898989),
+    color: MyColors.hintColor,
     shadows: [
       Shadow(
         color: const Color(0x29000000),

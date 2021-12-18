@@ -2,7 +2,6 @@ import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
-import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -36,11 +35,7 @@ class MessagesScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: TextFieldWidget(
-                hintText: Strings.search,
-                password: false,
-                icon: IconWidget(
-                  icon: Icons.search
-                ),
+                textFieldParameters: SearchTextFieldParameters(),
               ),
             ),
             Expanded(
