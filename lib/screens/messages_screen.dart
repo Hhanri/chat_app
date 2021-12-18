@@ -5,8 +5,16 @@ import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 
-class MessagesScreen extends StatelessWidget {
+class MessagesScreen extends StatefulWidget {
   const MessagesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MessagesScreen> createState() => _MessagesScreenState();
+}
+
+class _MessagesScreenState extends State<MessagesScreen> {
+
+  String _searchText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +43,9 @@ class MessagesScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: TextFieldWidget(
+                valueChanged: (value) {
+                  _searchText = value;
+                },
                 textFieldParameters: SearchTextFieldParameters(),
               ),
             ),

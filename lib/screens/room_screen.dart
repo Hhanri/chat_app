@@ -5,8 +5,16 @@ import 'package:chat_app/widgets/message_container_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 
-class RoomScreen extends StatelessWidget {
+class RoomScreen extends StatefulWidget {
   const RoomScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RoomScreen> createState() => _RoomScreenState();
+}
+
+class _RoomScreenState extends State<RoomScreen> {
+
+  String _message = "";
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +84,10 @@ class RoomScreen extends StatelessWidget {
                 Expanded(
                   flex: 18,
                   child: TextFieldWidget(
+                    valueChanged: (value) {
+                      _message = value;
+                      print(_message);
+                    },
                     textFieldParameters: TextFieldParamaters(
                       hintText: Strings.tapMessage,
                       iconWidget: IconWidget(icon: Icons.camera_alt_rounded),

@@ -9,8 +9,19 @@ import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+
+  String _email = "";
+  String _password = "";
+  String _username = "";
+  String _birthDate = "";
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +48,27 @@ class SignUpScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextFieldWidget(
+                          valueChanged: (value) {
+                            _email = value;
+                          },
                           textFieldParameters: EmailTextFieldParameters(),
                         ),
                         TextFieldWidget(
+                          valueChanged: (value) {
+                            _password = value;
+                          },
                           textFieldParameters: PasswordTextFieldParameters(),
                         ),
                         TextFieldWidget(
+                          valueChanged: (value) {
+                            _username = value;
+                          },
                           textFieldParameters: NameTextFieldParameters(),
                         ),
                         TextFieldWidget(
+                          valueChanged: (value) {
+                            _birthDate = value;
+                          },
                           textFieldParameters: TextFieldParamaters(
                             hintText: Strings.birthday,
                             iconWidget: IconWidget(icon: Icons.calendar_today)

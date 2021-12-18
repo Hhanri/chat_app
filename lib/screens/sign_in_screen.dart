@@ -7,8 +7,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+
+  String _email = "";
+  String _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +53,15 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextFieldWidget(
+                      valueChanged: (value) {
+                        _email = value;
+                      },
                       textFieldParameters: EmailTextFieldParameters(),
                     ),
                     TextFieldWidget(
+                      valueChanged: (value) {
+                        _password = value;
+                      },
                       textFieldParameters: PasswordTextFieldParameters(),
                     ),
                     ButtonWidget(

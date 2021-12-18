@@ -6,11 +6,13 @@ import 'package:flutter/services.dart';
 
 class TextFieldWidget extends StatefulWidget {
 
+  final ValueChanged<String> valueChanged;
   final TextFieldParamaters textFieldParameters;
 
   const TextFieldWidget({
     Key? key,
     required this.textFieldParameters,
+    required this.valueChanged,
   }) :  super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   late final TextFieldParamaters _textFieldParamaters;
+
 
   @override
   void initState() {
@@ -50,6 +53,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       ),
       obscureText: _textFieldParamaters.obscureText,
       autocorrect: _textFieldParamaters.autoCorrect,
+      onChanged: (String? value) {
+        widget.valueChanged(value ?? "");
+      },
+      onFieldSubmitted: (String? value) {
+        widget.valueChanged(value ?? "");
+      }
     );
   }
 }
