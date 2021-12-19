@@ -8,11 +8,15 @@ class TextFieldWidget extends StatefulWidget {
 
   final ValueChanged<String> valueChanged;
   final TextFieldParamaters textFieldParameters;
+  final FocusNode? focusNode;
+  final TextEditingController? textEditingController;
 
   const TextFieldWidget({
     Key? key,
     required this.textFieldParameters,
     required this.valueChanged,
+    this.focusNode,
+    this.textEditingController,
   }) :  super(key: key);
 
   @override
@@ -22,17 +26,26 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   late final TextFieldParamaters _textFieldParamaters;
+  FocusNode? _focusNode;
+  TextEditingController? _textEditingController;
 
 
   @override
   void initState() {
     super.initState();
     _textFieldParamaters = widget.textFieldParameters;
+    _focusNode = widget.focusNode ?? FocusNode();
+    _textEditingController = widget.textEditingController ?? TextEditingController();
+    if (_textFieldParamaters is TextFieldParamaters) {
+      _textFieldParamaters.iconTap = _revealObscureText;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: _textEditingController,
+      focusNode: _focusNode,
       style: MyTextStyles.body,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
@@ -58,8 +71,35 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       },
       onFieldSubmitted: (String? value) {
         widget.valueChanged(value ?? "");
-      }
+      },
+      validator: (String? value) {
+        return _validateForm(value ?? "");
+      },
     );
+  }
+
+  void _revealObscureText() {
+    setState(() {
+      _textFieldParamaters.obscureText = !_textFieldParamaters.obscureText;
+    });
+  }
+
+
+
+
+
+  String? _validateForm(String value) {
+    if (_textFieldParamaters != SearchTextFieldParameters) {
+      if (value == "" || value.replaceAll(" ", "") == "") {
+        return Strings.errorEmptyField;
+      } else {
+        if (_textFieldParamaters is PasswordTextFieldParameters && value.length < 8) {
+          return Strings.errorPasswordLength;
+        }
+      }
+    }
+    widget.valueChanged(value);
+    return null;
   }
 }
 

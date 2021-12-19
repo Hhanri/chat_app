@@ -27,6 +27,10 @@ class Strings {
   static const String error = "Erreur";
   static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
   static const String errorAuthStream = "Erreur lors de la récupération des utilisateurs";
+
+  //Form Errors
+  static const String errorEmptyField = "Le champ de formulaire ne peut pas être vide";
+  static const String errorPasswordLength = "Le mot de passe doit avoir au moins 8 caractères";
 }
 
 

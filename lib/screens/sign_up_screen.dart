@@ -18,6 +18,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
+  final _formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
   String _username = "";
@@ -44,40 +45,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Spacer(),
                   Expanded(
                     flex: 15,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextFieldWidget(
-                          valueChanged: (value) {
-                            _email = value;
-                          },
-                          textFieldParameters: EmailTextFieldParameters(),
-                        ),
-                        TextFieldWidget(
-                          valueChanged: (value) {
-                            _password = value;
-                          },
-                          textFieldParameters: PasswordTextFieldParameters(),
-                        ),
-                        TextFieldWidget(
-                          valueChanged: (value) {
-                            _username = value;
-                          },
-                          textFieldParameters: NameTextFieldParameters(),
-                        ),
-                        TextFieldWidget(
-                          valueChanged: (value) {
-                            _birthDate = value;
-                          },
-                          textFieldParameters: TextFieldParamaters(
-                            hintText: Strings.birthday,
-                            iconWidget: IconWidget(icon: Icons.calendar_today)
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextFieldWidget(
+                            valueChanged: (value) {
+                              _email = value;
+                            },
+                            textFieldParameters: EmailTextFieldParameters(),
                           ),
-                        ),
-                        ButtonWidget(
-                          buttonText: Strings.signUp,
-                          onPressed: () => print("s'inscrire"),),
-                      ],
+                          TextFieldWidget(
+                            valueChanged: (value) {
+                              _password = value;
+                            },
+                            textFieldParameters: PasswordTextFieldParameters(),
+                          ),
+                          TextFieldWidget(
+                            valueChanged: (value) {
+                              _username = value;
+                            },
+                            textFieldParameters: NameTextFieldParameters(),
+                          ),
+                          TextFieldWidget(
+                            valueChanged: (value) {
+                              _birthDate = value;
+                            },
+                            textFieldParameters: TextFieldParamaters(
+                              hintText: Strings.birthday,
+                              iconWidget: IconWidget(icon: Icons.calendar_today)
+                            ),
+                          ),
+                          ButtonWidget(
+                            buttonText: Strings.signUp,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                print("inscription");
+                              }
+                            }
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
