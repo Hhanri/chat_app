@@ -25,7 +25,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _password = "";
   String _username = "";
   String _birthDate = "";
+<<<<<<< HEAD
   bool? _TOScheck = false;
+=======
+  bool? _TOSCheck = false;
+>>>>>>> TOS_checkbox
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
-                              if (_TOScheck == true) {
+                              print("${_TOSCheck}");
+                              if (_TOSCheck == true) {
                                 if (_formKey.currentState!.validate()) {
                                   AuthenticationProvider().signUp(
                                       email: _email,
@@ -111,10 +116,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CheckboxWidget(
+<<<<<<< HEAD
                         checked: _TOScheck,
                         valueChange: (value) {
                           _TOScheck = value;
                         },
+=======
+                        valueChanged: (value) {
+                          _TOSCheck = value;
+                        }
+>>>>>>> TOS_checkbox
                       ),
                       Text(
                         Strings.acceptConditions,
