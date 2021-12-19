@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class CheckboxWidget extends StatefulWidget {
   bool? checked;
+  final ValueChanged<bool> valueChange;
   CheckboxWidget({
     Key? key,
     this.checked,
+    required this.valueChange,
   }) : super(key: key);
 
   @override
@@ -21,10 +23,10 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
           borderRadius: MyShapes.checkboxBorders
       ),
       value: widget.checked,
-      onChanged: (value) {
+      onChanged: (bool? value) {
         setState(() {
+          widget.valueChange(value ?? false);
           widget.checked = value;
-          print("TOScheck is ${widget.checked}");
         });
       },
     );

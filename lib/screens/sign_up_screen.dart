@@ -25,7 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _password = "";
   String _username = "";
   String _birthDate = "";
-  bool? _TOScheck = true;
+  bool? _TOScheck = false;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CheckboxWidget(checked: _TOScheck),
+                      CheckboxWidget(
+                        checked: _TOScheck,
+                        valueChange: (value) {
+                          _TOScheck = value;
+                        },
+                      ),
                       Text(
                         Strings.acceptConditions,
                         style: TextStyle(
