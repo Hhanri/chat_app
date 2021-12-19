@@ -36,7 +36,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     _textFieldParamaters = widget.textFieldParameters;
     _focusNode = widget.focusNode ?? FocusNode();
     _textEditingController = widget.textEditingController ?? TextEditingController();
-    if (_textFieldParamaters is TextFieldParamaters) {
+    if (_textFieldParamaters is PasswordTextFieldParameters) {
       _textFieldParamaters.iconTap = _revealObscureText;
     }
   }
