@@ -12,7 +12,10 @@ class NavigationUtils {
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: Text(bodyText),
+          title: Text(
+            bodyText,
+            textAlign: TextAlign.center,
+          ),
           actions: [
             Center(
               child: ElevatedButton(
@@ -29,7 +32,7 @@ class NavigationUtils {
     );
   }
 
-  static void showLaodingDialog(BuildContext context) {
+  static void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (dialogContext) {

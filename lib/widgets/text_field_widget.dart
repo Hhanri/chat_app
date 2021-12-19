@@ -3,6 +3,7 @@ import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:chat_app/utils/format_util.dart';
 
 class TextFieldWidget extends StatefulWidget {
 
@@ -96,6 +97,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         if (_textFieldParamaters is PasswordTextFieldParameters && value.length < 8) {
           return Strings.errorPasswordLength;
         }
+      }
+    }
+    if (_textFieldParamaters is EmailTextFieldParameters) {
+      if(!value.isValidEmail()) {
+        return Strings.errorIsNotEmail;
       }
     }
     widget.valueChanged(value);

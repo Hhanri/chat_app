@@ -2,8 +2,10 @@ import 'package:chat_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class CheckboxWidget extends StatefulWidget {
-  const CheckboxWidget({
+  bool? checked;
+  CheckboxWidget({
     Key? key,
+    this.checked,
   }) : super(key: key);
 
   @override
@@ -12,18 +14,17 @@ class CheckboxWidget extends StatefulWidget {
 
 class _CheckboxWidgetState extends State<CheckboxWidget> {
 
-  bool? checked = false;
-
   @override
   Widget build(BuildContext context) {
     return Checkbox(
         shape: RoundedRectangleBorder(
             borderRadius: MyShapes.checkboxBorders
         ),
-        value: checked,
+        value: widget.checked,
         onChanged: (value) {
           setState(() {
-            this.checked = value;
+            widget.checked = value;
+            print("TOScheck is ${widget.checked}");
           });
         }
     );

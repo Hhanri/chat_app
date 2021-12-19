@@ -1,3 +1,4 @@
+import 'package:chat_app/providers/authentication_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
@@ -23,6 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _password = "";
   String _username = "";
   String _birthDate = "";
+  bool? _TOScheck = true;
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +82,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                print("inscription");
+                              if (_formKey.currentState!.validate() && _TOScheck == true) {
+                                AuthenticationProvider().signUp(
+                                  email: _email,
+                                  password: _password,
+                                  username: _username,
+                                  context: context
+                                );
+                              } else {
+                                print("check TOS");
                               }
                             }
                           ),
@@ -95,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CheckboxWidget(),
+                      CheckboxWidget(checked: _TOScheck),
                       Text(
                         Strings.acceptConditions,
                         style: TextStyle(
