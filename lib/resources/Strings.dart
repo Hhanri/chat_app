@@ -35,11 +35,19 @@ class Strings {
   static const String weakPassword = "Le mot de passe est trop faible";
   static const String emailAlreadyUsed = "L'email renseigné est déjà utilisé";
   static const String errorIsNotEmail = "L'email renseigné n'est pas valide";
+  static const String errorTOSNotChecked = "Veuillez accepter les CGU";
+  static const String errorUserNotFound = "L'utilisateur n'existe pas";
+  static const String errorWrongPassword = "Le mot de passe ne correspond pas";
+  static const String errorDisabledUser = "Ce compte est désactivé";
+  static const String errorLogOut = "Erreur de déconnexion";
 
   //Firebase error code
   static const String weakPasswordCode = "weak-password";
   static const String emailAlreadyUsedCode = "email-already-in-use";
   static const String errorAuthSignUp = "Erreur d'inscription";
+  static const String userNotFoundCode = "user-not-found";
+  static const String wrongPasswordCode = "wrong-password";
+  static const String disabledUserCode = "user-disabled";
 }
 
 

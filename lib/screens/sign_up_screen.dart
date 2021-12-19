@@ -3,6 +3,7 @@ import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/utils/app_config.dart';
+import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:chat_app/widgets/button_widget.dart';
 import 'package:chat_app/widgets/checkbox_widget.dart';
 import 'package:chat_app/widgets/icon_widget.dart';
@@ -82,15 +83,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
-                              if (_formKey.currentState!.validate() && _TOScheck == true) {
-                                AuthenticationProvider().signUp(
-                                  email: _email,
-                                  password: _password,
-                                  username: _username,
-                                  context: context
-                                );
+                              if (_TOScheck == true) {
+                                if (_formKey.currentState!.validate()) {
+                                  AuthenticationProvider().signUp(
+                                      email: _email,
+                                      password: _password,
+                                      username: _username,
+                                      context: context
+                                  );
+                                }
                               } else {
-                                print("check TOS");
+                                NavigationUtils.showMyDialog(
+                                  context: context,
+                                  bodyText: Strings.errorTOSNotChecked
+                                );
                               }
                             }
                           ),

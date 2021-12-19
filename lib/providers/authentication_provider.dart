@@ -57,11 +57,59 @@ class AuthenticationProvider with ChangeNotifier {
     }
   }
 
-  void signIn() {
-
+  void signIn({
+    required String email,
+    required String password,
+    required BuildContext context
+    }) async {
+    NavigationUtils.showLoadingDialog(context);
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password
+      ).then ((value) {
+        NavigationUtils.hideDialog(context);
+      });
+    } on FirebaseAuthException catch (error) {
+      NavigationUtils.hideDialog(context);
+      if (error.code == Strings.userNotFoundCode) {
+        NavigationUtils.showMyDialog(
+          context: context,
+          bodyText: Strings.errorUserNotFound
+        );
+      } else if (error.code == Strings.wrongPasswordCode){
+        NavigationUtils.showMyDialog(
+          context: context,
+          bodyText: Strings.errorWrongPassword
+        );
+      } else if (error.code == Strings.disabledUserCode) {
+        NavigationUtils.showMyDialog(
+          context: context,
+          bodyText: Strings.errorDisabledUser
+        );
+      } else {
+        NavigationUtils.showMyDialog(
+          context: context,
+          bodyText: Strings.error
+        );
+      }
+    }
   }
 
-  void signOut() {
+  void signOut({required BuildContext context}) async {
+    NavigationUtils.showLoadingDialog(context);
+    try {
+      _firebaseAuth.signOut().then((value) {
+        NavigationUtils.hideDialog(context);
+      });
+    } on FirebaseAuthException catch (error) {
+      NavigationUtils.hideDialog(context);
+      NavigationUtils.showMyDialog(
+          context: context,
+          bodyText: Strings.errorLogOut
+      );
+    }
+
 
   }
 

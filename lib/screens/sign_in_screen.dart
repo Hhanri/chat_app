@@ -1,3 +1,4 @@
+import 'package:chat_app/providers/authentication_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
@@ -66,7 +67,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     ButtonWidget(
                       buttonText: Strings.signIn,
-                      onPressed:() => Navigator.pushReplacementNamed(context, MESSAGES_PAGE,)
+                      onPressed:() {
+                        AuthenticationProvider().signIn(
+                          email: _email,
+                          password: _password,
+                          context: context
+                        );
+                      }
                     )
                   ],
                 ),

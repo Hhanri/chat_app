@@ -17,16 +17,16 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
-        shape: RoundedRectangleBorder(
-            borderRadius: MyShapes.checkboxBorders
-        ),
-        value: widget.checked,
-        onChanged: (value) {
-          setState(() {
-            widget.checked = value;
-            print("TOScheck is ${widget.checked}");
-          });
-        }
+      shape: RoundedRectangleBorder(
+          borderRadius: MyShapes.checkboxBorders
+      ),
+      value: widget.checked,
+      onChanged: (value) {
+        setState(() {
+          widget.checked = value;
+          print("TOScheck is ${widget.checked}");
+        });
+      },
     );
   }
 }

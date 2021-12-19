@@ -1,7 +1,9 @@
 import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/providers/authentication_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
+import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -28,13 +30,22 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  Strings.titleApp,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline1,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    Strings.titleApp,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  IconButton(
+                    onPressed: () => AuthenticationProvider().signOut(context: context),
+                    icon: IconWidget(
+                      icon: Icons.power_settings_new_outlined,
+                      size: 27
+                    ),
+                  )
+                ],
               ),
             ),
             Spacer(
