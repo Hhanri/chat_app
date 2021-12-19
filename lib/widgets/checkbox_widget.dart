@@ -24,8 +24,10 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
       ),
       value: widget.checked,
       onChanged: (bool? value) {
-        widget.valueChanged(value ?? false);
-        widget.checked = value;
+        setState(() {
+          widget.valueChanged(value ?? false);
+          widget.checked = value;
+        });
       }
     );
   }
