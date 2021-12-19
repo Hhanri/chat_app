@@ -2,10 +2,12 @@ import 'package:chat_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class CheckboxWidget extends StatefulWidget {
-  bool? checked;
+  bool? checked = false;
+  final ValueChanged<bool> valueChanged;
   CheckboxWidget({
     Key? key,
     this.checked,
+    required this.valueChanged,
   }) : super(key: key);
 
   @override
@@ -21,12 +23,10 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
           borderRadius: MyShapes.checkboxBorders
       ),
       value: widget.checked,
-      onChanged: (value) {
-        setState(() {
-          widget.checked = value;
-          print("TOScheck is ${widget.checked}");
-        });
-      },
+      onChanged: (bool? value) {
+        widget.valueChanged(value ?? false);
+        widget.checked = value;
+      }
     );
   }
 }
