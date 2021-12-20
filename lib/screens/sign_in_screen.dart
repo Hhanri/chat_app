@@ -68,6 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ButtonWidget(
                       buttonText: Strings.signIn,
                       onPressed:() {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         AuthenticationProvider().signIn(
                           email: _email,
                           password: _password,

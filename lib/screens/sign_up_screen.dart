@@ -74,8 +74,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextFieldWidget(
                             valueChanged: (value) {
                               _birthDate = value;
+                              print("$_birthDate");
                             },
-                            textFieldParameters: TextFieldParamaters(
+                            textFieldParameters: DateTextFieldParameters(
                               hintText: Strings.birthday,
                               iconWidget: IconWidget(icon: Icons.calendar_today)
                             ),
@@ -83,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
-                              print("${_TOScheck}");
+                              FocusScope.of(context).requestFocus(FocusNode());
                               if (_TOScheck == true) {
                                 if (_formKey.currentState!.validate()) {
                                   AuthenticationProvider().signUp(

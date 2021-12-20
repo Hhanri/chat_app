@@ -40,6 +40,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     if (_textFieldParamaters is PasswordTextFieldParameters) {
       _textFieldParamaters.iconTap = _revealObscureText;
     }
+    if (_textFieldParamaters is DateTextFieldParameters) {
+      _textFieldParamaters.iconTap = () {
+        FocusScope.of(context).requestFocus(FocusNode());
+        _pickDate();
+      };
+    }
   }
 
   @override
@@ -85,6 +91,18 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     });
   }
 
+  Future _pickDate() async {
+    DateTime? _picked = DateTime(2000);
+    _picked = await showDatePicker(
+      context: context,
+      initialDate: _picked,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now()
+    );
+    if(_picked != null) {
+      setState(() => _textEditingController?.text = _picked.toString());
+    }
+  }
 
 
 
@@ -114,6 +132,7 @@ class TextFieldParamaters {
   final String? hintText;
   IconWidget? iconWidget;
   VoidCallback? iconTap;
+  VoidCallback? onTap;
   final TextStyle? textStyle;
   bool obscureText;
   final bool autoCorrect;
@@ -128,7 +147,8 @@ class TextFieldParamaters {
     this.obscureText = false,
     this.autoCorrect = true ,
     this.textInputFormatters,
-    this.keyboardType
+    this.keyboardType,
+    this.onTap
   });
 }
 
@@ -166,6 +186,21 @@ class PasswordTextFieldParameters extends TextFieldParamaters {
     obscureText: true,
     autoCorrect: false,
     iconWidget: iconWidget
+  );
+}
+
+class DateTextFieldParameters extends TextFieldParamaters {
+  final String? hintText;
+  final IconWidget? iconWidget;
+  DateTextFieldParameters({
+    this.hintText = Strings.birthday,
+    this.iconWidget = const IconWidget(
+        icon: Icons.calendar_today
+    )
+  }) : super(
+      hintText: hintText,
+      autoCorrect: false,
+      iconWidget: iconWidget
   );
 }
 

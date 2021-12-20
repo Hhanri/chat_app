@@ -1,5 +1,4 @@
 import 'package:chat_app/resources/Strings.dart';
-import 'package:chat_app/screens/sign_in_screen.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';

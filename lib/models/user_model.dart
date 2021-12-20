@@ -1,4 +1,3 @@
-import 'package:chat_app/resources/Strings.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserModel {
