@@ -74,7 +74,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextFieldWidget(
                             valueChanged: (value) {
                               _birthDate = value;
-                              print("$_birthDate");
                             },
                             textFieldParameters: DateTextFieldParameters(
                               hintText: Strings.birthday,

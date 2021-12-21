@@ -43,7 +43,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     if (_textFieldParamaters is DateTextFieldParameters) {
       _textFieldParamaters.iconTap = () {
         FocusScope.of(context).requestFocus(FocusNode());
-        _pickDate();
+        _pickDate().then((value) {
+          widget.valueChanged(value);
+        });
       };
     }
   }
@@ -91,7 +93,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     });
   }
 
-  Future _pickDate() async {
+  Future<String> _pickDate() async {
     DateTime? _picked = DateTime(2000);
     _picked = await showDatePicker(
       context: context,
@@ -102,6 +104,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     if(_picked != null) {
       setState(() => _textEditingController?.text = _picked.toString());
     }
+    return _picked.toString();
   }
 
 
