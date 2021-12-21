@@ -8,6 +8,7 @@ import 'package:chat_app/utils/format_util.dart';
 class TextFieldWidget extends StatefulWidget {
 
   final ValueChanged<String> valueChanged;
+  final ValueChanged<DateTime?>? dateValueChanged;
   final TextFieldParamaters textFieldParameters;
   final FocusNode? focusNode;
   final TextEditingController? textEditingController;
@@ -18,6 +19,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.valueChanged,
     this.focusNode,
     this.textEditingController,
+    this.dateValueChanged
   }) :  super(key: key);
 
   @override
@@ -41,18 +43,16 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       _textFieldParamaters.iconTap = _revealObscureText;
     }
     if (_textFieldParamaters is DateTextFieldParameters) {
-      _textFieldParamaters.iconTap = () {
-        FocusScope.of(context).requestFocus(FocusNode());
-        _pickDate().then((value) {
-          widget.valueChanged(value);
-        });
-      };
-    }
+      _textFieldParamaters.readOnly = true;
+      _textFieldParamaters.iconTap = _tapFunction;
+      _textFieldParamaters.onTap= _tapFunction;
+    };
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: _textFieldParamaters.onTap,
       controller: _textEditingController,
       focusNode: _focusNode,
       style: MyTextStyles.body,
@@ -102,12 +102,17 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       lastDate: DateTime.now()
     );
     if(_picked != null) {
-      setState(() => _textEditingController?.text = _picked.toString());
+      setState(() => _textEditingController?.text = _picked.displayDate());
     }
-    return _picked.toString();
+    return _picked.displayDate();
   }
 
-
+  void _tapFunction() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    _pickDate().then((String value) {
+      widget.valueChanged(value);
+    });
+  }
 
 
   String? _validateForm(String value) {
@@ -141,6 +146,7 @@ class TextFieldParamaters {
   final bool autoCorrect;
   List<TextInputFormatter>? textInputFormatters;
   TextInputType? keyboardType;
+  bool? readOnly;
 
   TextFieldParamaters({
     required this.hintText,
@@ -151,7 +157,8 @@ class TextFieldParamaters {
     this.autoCorrect = true ,
     this.textInputFormatters,
     this.keyboardType,
-    this.onTap
+    this.onTap,
+    this.readOnly,
   });
 }
 

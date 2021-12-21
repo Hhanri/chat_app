@@ -10,6 +10,9 @@ import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/utils/format_util.dart';
+import 'package:intl/intl.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _email = "";
   String _password = "";
   String _username = "";
-  String _birthDate = "";
+  String? _birthDate;
   bool? _TOScheck = false;
 
   @override
