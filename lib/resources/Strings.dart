@@ -48,6 +48,13 @@ class Strings {
   static const String userNotFoundCode = "user-not-found";
   static const String wrongPasswordCode = "wrong-password";
   static const String disabledUserCode = "user-disabled";
+
+  //Firebase Queries and Models
+  static const String usersCollection = "users";
+  static const String userModelId = "userId";
+  static const String userModelIName= "username";
+  static const String userModelImagePath = "userImagePath";
+  static const String userModelBirthDate = "userBirthDate";
 }
 
 

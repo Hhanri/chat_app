@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _email = "";
   String _password = "";
   String _username = "";
-  String? _birthDate;
+  String _birthDate = "";
   bool? _TOScheck = false;
 
   @override
@@ -93,6 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       email: _email,
                                       password: _password,
                                       username: _username,
+                                      birthDate: _birthDate,
                                       context: context
                                   );
                                 }

@@ -1,6 +1,8 @@
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/utils/navigation_utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +19,28 @@ class AuthenticationProvider with ChangeNotifier {
     required String email,
     required String password,
     required String username,
+    required String birthDate,
     required BuildContext context,
   }) async {
     NavigationUtils.showLoadingDialog(context);
     try {
-      UserCredential _userCredidential = await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential _userCredidentials = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password
       );
+      User? _user = _userCredidentials.user;
+
+      await FirebaseFirestore.instance
+        .collection(Strings.usersCollection)
+        .doc(_user?.uid)
+        .set({
+          Strings.userModelId: _user?.uid,
+          Strings.userModelIName: username,
+          Strings.userModelBirthDate: birthDate,
+          Strings.userModelImagePath: _user?.photoURL,
+      });
+
+
       NavigationUtils.hideDialog(context);
       NavigationUtils.showMyDialog(
         context: context,
