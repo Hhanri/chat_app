@@ -16,14 +16,14 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _email = "";
   String _password = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      //key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           height: AppConfig.heightScreen(context),
@@ -69,12 +69,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     ButtonWidget(
                       buttonText: Strings.signIn,
                       onPressed:() {
-                        print(ModalRoute.of(context)?.settings.name);
                         FocusScope.of(context).requestFocus(FocusNode());
                         AuthenticationProvider().signIn(
                           email: _email,
                           password: _password,
-                          context: _scaffoldKey.currentState?.context ?? context
+                          context: context //_scaffoldKey.currentState?.context ?? context
                         );
                       }
                     )

@@ -56,7 +56,16 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     IconButton(
-                      onPressed: () => AuthenticationProvider().signOut(context: context),
+                      onPressed: () async {
+                        NavigationUtils.showMyDialog(
+                            context: context,
+                            bodyText: Strings.alertConfirmSignOut,
+                            onClick: () async {
+                              AuthenticationProvider().signOut(context: context);
+                              Navigator.of(context).pop();
+                            }
+                        );
+                      },
                       icon: IconWidget(
                         icon: Icons.power_settings_new_outlined,
                         size: 27

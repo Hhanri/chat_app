@@ -40,16 +40,14 @@ class AuthenticationProvider with ChangeNotifier {
           Strings.userModelBirthDate: birthDate,
           Strings.userModelImagePath: _user?.photoURL,
       });
-      _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
 
       NavigationUtils.hideDialog(context);
       NavigationUtils.showMyDialog(
         context: context,
         bodyText: Strings.signUpComplete,
-        onClick: () => Navigator.pushNamedAndRemoveUntil(
-          context,
-          MAIN_APP,
-          ModalRoute.withName(MAIN_APP)
+        onClick: () => Navigator.of(context).pushNamedAndRemoveUntil(
+          SIGN_IN_PAGE,
+          ModalRoute.withName(SIGN_IN_PAGE)
         )
       );
     } on FirebaseAuthException catch(error) {
@@ -85,6 +83,10 @@ class AuthenticationProvider with ChangeNotifier {
         password: password
       );
       NavigationUtils.hideDialog(context);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          MESSAGES_PAGE,
+          (Route<dynamic> route) => false
+      );
     } on FirebaseAuthException catch (error) {
       NavigationUtils.hideDialog(context);
       if (error.code == Strings.userNotFoundCode) {
@@ -118,7 +120,7 @@ class AuthenticationProvider with ChangeNotifier {
         NavigationUtils.hideDialog(context);
         Navigator.of(context).pushNamedAndRemoveUntil(
           SIGN_IN_PAGE,
-            (Route<dynamic> route) => false
+          (Route<dynamic> route) => false
         );
       });
       //Navigator.pushNamedAndRemoveUntil(
