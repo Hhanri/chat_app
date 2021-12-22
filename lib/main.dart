@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
             ],
             builder: (providerContext, widget) {
               return MaterialApp(
-                initialRoute: "/",
                 title: Strings.titleApp,
                 theme: theme,
                 debugShowCheckedModeBanner: false,

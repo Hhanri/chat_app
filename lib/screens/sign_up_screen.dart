@@ -95,6 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       birthDate: _birthDate,
                                       context: context
                                   );
+
                                 }
                               } else {
                                 NavigationUtils.showMyDialog(
@@ -134,9 +135,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Text(Strings.alreadyAccount),
                       TextButton(
-                        onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          SIGN_IN_PAGE,
+                        onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                          MAIN_APP,
                           (Route<dynamic> route) => false
                         ),
                         style: TextButton.styleFrom(

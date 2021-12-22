@@ -16,13 +16,14 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _email = "";
   String _password = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           height: AppConfig.heightScreen(context),
@@ -73,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         AuthenticationProvider().signIn(
                           email: _email,
                           password: _password,
-                          context: context
+                          context: _scaffoldKey.currentState?.context ?? context
                         );
                       }
                     )

@@ -1,4 +1,5 @@
 import 'package:chat_app/resources/Strings.dart';
+import 'package:chat_app/screens/messages_screen.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,7 +40,7 @@ class AuthenticationProvider with ChangeNotifier {
           Strings.userModelBirthDate: birthDate,
           Strings.userModelImagePath: _user?.photoURL,
       });
-
+      _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
 
       NavigationUtils.hideDialog(context);
       NavigationUtils.showMyDialog(
@@ -47,8 +48,8 @@ class AuthenticationProvider with ChangeNotifier {
         bodyText: Strings.signUpComplete,
         onClick: () => Navigator.pushNamedAndRemoveUntil(
           context,
-          SIGN_IN_PAGE,
-          ModalRoute.withName(SIGN_IN_PAGE)
+          MAIN_APP,
+          ModalRoute.withName(MAIN_APP)
         )
       );
     } on FirebaseAuthException catch(error) {
@@ -82,9 +83,8 @@ class AuthenticationProvider with ChangeNotifier {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password
-      ).then ((value) {
-        NavigationUtils.hideDialog(context);
-      });
+      );
+      NavigationUtils.hideDialog(context);
     } on FirebaseAuthException catch (error) {
       NavigationUtils.hideDialog(context);
       if (error.code == Strings.userNotFoundCode) {
@@ -114,9 +114,18 @@ class AuthenticationProvider with ChangeNotifier {
   void signOut({required BuildContext context}) async {
     NavigationUtils.showLoadingDialog(context);
     try {
-      _firebaseAuth.signOut().then((value) {
+      await _firebaseAuth.signOut().then((value) {
         NavigationUtils.hideDialog(context);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          SIGN_IN_PAGE,
+            (Route<dynamic> route) => false
+        );
       });
+      //Navigator.pushNamedAndRemoveUntil(
+      //    context,
+      //    MAIN_APP,
+      //    (Route<dynamic> route) => false
+      //);
     } on FirebaseAuthException catch (error) {
       NavigationUtils.hideDialog(context);
       NavigationUtils.showMyDialog(

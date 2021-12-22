@@ -49,6 +49,9 @@ class Strings {
   static const String wrongPasswordCode = "wrong-password";
   static const String disabledUserCode = "user-disabled";
 
+  //Auth Firebase
+  static const String alertConfirmSignOut = "Vous êtes sur le point de vous déconnecter";
+
   //Firebase Queries and Models
   static const String usersCollection = "users";
   static const String userModelId = "userId";
