@@ -135,8 +135,31 @@ class AuthenticationProvider with ChangeNotifier {
           bodyText: Strings.errorLogOut
       );
     }
+  }
 
+  Future<bool> reloadFirebase({required BuildContext context}) async {
+    bool _isUserStillConnected = true;
+    try{
+      await currentUser?.reload();
+      if (currentUser == null) {
+        _isUserStillConnected = false;
+        showDisconnectDialog(context: context);
+      }
+    } on FirebaseAuthException catch(error) {
+      _isUserStillConnected = false;
+      showDisconnectDialog(context: context);
+    }
+    return _isUserStillConnected;
+  }
 
+  void showDisconnectDialog({required BuildContext context}) {
+    NavigationUtils.showMyDialog(
+      context: context,
+      bodyText: Strings.errorDisabledUser,
+      onClick: () {
+        signOut(context: context);
+      }
+    );
   }
 
 }

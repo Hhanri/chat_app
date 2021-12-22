@@ -92,7 +92,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
-                      onTap: () => Navigator.pushNamed(context, CHAT_PAGE),
+                      onTap: () async {
+                        bool _isUserStillConnected = await AuthenticationProvider().reloadFirebase(context: context);
+                        if (_isUserStillConnected) {
+                          Navigator.pushNamed(context, CHAT_PAGE);
+                        }
+
+                      },
                       leading: Image.asset(
                         users[index]?.imagePath ?? "assets/pp/no_photo.png"
                       ),
