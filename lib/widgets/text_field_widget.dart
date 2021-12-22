@@ -52,6 +52,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: _textFieldParamaters.textInputFormatters,
       onTap: _textFieldParamaters.onTap,
       controller: _textEditingController,
       focusNode: _focusNode,
@@ -210,7 +211,8 @@ class DateTextFieldParameters extends TextFieldParamaters {
   }) : super(
       hintText: hintText,
       autoCorrect: false,
-      iconWidget: iconWidget
+      iconWidget: iconWidget,
+      textInputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9/]"))]
   );
 }
 

@@ -53,16 +53,16 @@ class AuthenticationProvider with ChangeNotifier {
       );
     } on FirebaseAuthException catch(error) {
       NavigationUtils.hideDialog(context);
-      if (error.code == Strings.weakPassword) {
+      if (error.code == Strings.emailAlreadyUsedCode) {
         NavigationUtils.showMyDialog(
-          context: context,
-          bodyText: Strings.weakPassword
+            context: context,
+            bodyText: Strings.weakPassword
         );
-      } else if (error.code == Strings.emailAlreadyUsedCode) {
-        NavigationUtils.showMyDialog(
-          context: context,
-          bodyText: Strings.weakPassword
-        );
+      }else if (error.code == Strings.weakPassword) {
+          NavigationUtils.showMyDialog(
+              context: context,
+              bodyText: Strings.weakPassword
+          );
       } else {
         NavigationUtils.showMyDialog(
           context: context,

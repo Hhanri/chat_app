@@ -10,8 +10,6 @@ import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/utils/format_util.dart';
-import 'package:intl/intl.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -86,6 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
+                              print(ModalRoute.of(context)?.settings.name);
                               FocusScope.of(context).requestFocus(FocusNode());
                               if (_TOScheck == true) {
                                 if (_formKey.currentState!.validate()) {
@@ -135,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Text(Strings.alreadyAccount),
                       TextButton(
-                        onPressed: () =>  Navigator.pushNamedAndRemoveUntil(
+                        onPressed: () => Navigator.pushNamedAndRemoveUntil(
                           context,
                           SIGN_IN_PAGE,
                           (Route<dynamic> route) => false

@@ -68,6 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ButtonWidget(
                       buttonText: Strings.signIn,
                       onPressed:() {
+                        print(ModalRoute.of(context)?.settings.name);
                         FocusScope.of(context).requestFocus(FocusNode());
                         AuthenticationProvider().signIn(
                           email: _email,
@@ -87,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Text(Strings.noAccount),
                   TextButton(
-                    onPressed: () =>  Navigator.pushNamed(context, SIGN_UP_PAGE),
+                    onPressed: () => Navigator.of(context).pushNamed(SIGN_UP_PAGE),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),
