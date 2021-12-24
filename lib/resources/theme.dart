@@ -51,6 +51,9 @@ ThemeData theme = ThemeData(
       )
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: MyColors.primary
+  ),
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: MyColors.primary
   )

@@ -21,9 +21,12 @@ class Strings {
   //Messages
   static const String messagesTitle = "Messages";
   static const String tapMessage = "Tapez votre message…";
-  static const String search = "Rechercher...";
   static const String exampleDate = "13/05/21 - 18:50";
 
+  //Search
+  static const String searchContacts = "Rechercher un contact...";
+  static const String search = "Rechercher...";
+  static const String noContactFound = "Aucun contact trouvé";
   //Errors
   static const String error = "Erreur";
   static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
@@ -55,7 +58,7 @@ class Strings {
   //Firebase Queries and Models
   static const String usersCollection = "users";
   static const String userModelId = "userId";
-  static const String userModelIName= "username";
+  static const String userModelName= "username";
   static const String userModelImagePath = "userImagePath";
   static const String userModelBirthDate = "userBirthDate";
 }

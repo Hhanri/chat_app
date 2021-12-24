@@ -131,6 +131,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.of(context).pushNamed(SEARCH_PAGE),
+          child: Icon(
+            Icons.create
+          ),
+        ),
       ),
     );
   }

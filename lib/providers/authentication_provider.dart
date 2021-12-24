@@ -36,10 +36,12 @@ class AuthenticationProvider with ChangeNotifier {
         .doc(_user?.uid)
         .set({
           Strings.userModelId: _user?.uid,
-          Strings.userModelIName: username,
+          Strings.userModelName: username,
           Strings.userModelBirthDate: birthDate,
           Strings.userModelImagePath: _user?.photoURL,
       });
+      
+      await _firebaseAuth.signOut();
 
       NavigationUtils.hideDialog(context);
       NavigationUtils.showMyDialog(
@@ -55,7 +57,7 @@ class AuthenticationProvider with ChangeNotifier {
       if (error.code == Strings.emailAlreadyUsedCode) {
         NavigationUtils.showMyDialog(
             context: context,
-            bodyText: Strings.weakPassword
+            bodyText: Strings.emailAlreadyUsedCode
         );
       }else if (error.code == Strings.weakPassword) {
           NavigationUtils.showMyDialog(
