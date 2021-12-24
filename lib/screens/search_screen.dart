@@ -1,3 +1,4 @@
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/providers/chat_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
@@ -73,26 +74,35 @@ class _SearchScreenState extends State<SearchScreen> {
                         } else {
                           if (snapshot.hasData) {
                             List<QueryDocumentSnapshot<dynamic>> _docs = snapshot.data!.docs;
-                            return ListView.builder(
-                              itemBuilder: (contextListView, index) {
-                                return ListTile(
-                                  onTap: () {
-                                  },
-                                  leading: SizedBox(
-                                    height: 45,
-                                    width: 45,
-                                    child: Image.asset("assets/pp/Emma.png")
-                                  ),
-                                  title: Text(
-                                    "utilisateur",
-                                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      fontSize: 16
+                            List<UserModel?> _userModels = UserModel.decodeUsers(_docs);
+                            if (_userModels.length> 0) {
+                              return ListView.builder(
+                                itemBuilder: (contextListView, index) {
+                                  return ListTile(
+                                    onTap: () {
+                                    },
+                                    leading: SizedBox(
+                                      height: 45,
+                                      width: 45,
+                                      child: Image.asset(_userModels[index]?.imagePath ?? "assets/pp/no_photo.png")
                                     ),
-                                  )
-                                );
-                              },
-                              itemCount: 2
-                            );
+                                    title: Text(
+                                      _userModels[index]?.userName ?? "utilisateur inconnu",
+                                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                                        fontSize: 16
+                                      ),
+                                    )
+                                  );
+                                },
+                                itemCount: _userModels.length
+                              );
+                            } else {
+                              return Center(
+                                child: Text(
+                                  Strings.noContactFound
+                                )
+                              );
+                            }
                           } else {
                             return Center(
                               child: Text(

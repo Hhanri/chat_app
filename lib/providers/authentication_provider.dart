@@ -40,7 +40,7 @@ class AuthenticationProvider with ChangeNotifier {
           Strings.userModelBirthDate: birthDate,
           Strings.userModelImagePath: _user?.photoURL,
       });
-      
+
       await _firebaseAuth.signOut();
 
       NavigationUtils.hideDialog(context);
