@@ -12,10 +12,22 @@ extension EmailValidator on String {
   }
 }
 
-extension formatDate on DateTime? {
+extension FormatDate on DateTime? {
   String displayDate() {
     return DateFormat('dd/MM/yyyy').format(this ?? DateTime.now());
   }
+}
 
+extension DateToStringMessages on DateTime {
+  String parseDataToStringMessages() {
+    return DateFormat("dd/MM/yyyy - HH:mm").format(this);
+  }
+}
 
+extension StringToDateMessages on String {
+  DateTime parseStringToDateMessages() {
+    String _date = this;
+    DateFormat _format = DateFormat("EEE MMM dd HH:mm:ss yyyy");
+    return _format.parse(_date);
+  }
 }

@@ -95,7 +95,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       onTap: () async {
                         bool _isUserStillConnected = await AuthenticationProvider().reloadFirebase(context: context);
                         if (_isUserStillConnected) {
-                          Navigator.pushNamed(context, CHAT_PAGE);
+                          Navigator.pushNamed(context, ROOM_PAGE);
                         }
 
                       },

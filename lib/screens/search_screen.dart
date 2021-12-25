@@ -2,6 +2,7 @@ import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/providers/chat_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
+import 'package:chat_app/utils/RouteGenerator.dart';
 import 'package:chat_app/widgets/circular_progress_indicator_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +81,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                 itemBuilder: (contextListView, index) {
                                   return ListTile(
                                     onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                        ROOM_PAGE,
+                                        arguments: _userModels[index]
+                                      );
                                     },
                                     leading: SizedBox(
                                       height: 45,
@@ -87,7 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       child: Image.asset(_userModels[index]?.imagePath ?? "assets/pp/no_photo.png")
                                     ),
                                     title: Text(
-                                      _userModels[index]?.userName ?? "utilisateur inconnu",
+                                      _userModels[index]?.userName ?? Strings.nullSafetyUnknownUser,
                                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
                                         fontSize: 16
                                       ),

@@ -22,11 +22,13 @@ class Strings {
   static const String messagesTitle = "Messages";
   static const String tapMessage = "Tapez votre message…";
   static const String exampleDate = "13/05/21 - 18:50";
+  static const String brandNewConv = "Nouvelle conversation avec ";
 
   //Search
   static const String searchContacts = "Rechercher un contact...";
   static const String search = "Rechercher...";
   static const String noContactFound = "Aucun contact trouvé";
+
   //Errors
   static const String error = "Erreur";
   static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
@@ -61,6 +63,17 @@ class Strings {
   static const String userModelName= "username";
   static const String userModelImagePath = "userImagePath";
   static const String userModelBirthDate = "userBirthDate";
+  static const String roomsCollection = "rooms";
+  static const String messagesCollection = "messages";
+  static const String messageModelTextMessage = "textMessage";
+  static const String messageModelTimeStamp = "timeStamp";
+
+  //Firestore errors
+  static const String getMessageError = "Erreur lors de la récupération des messages";
+
+
+  //Null Safety
+  static const String nullSafetyUnknownUser = "utilisateur inconnu";
 }
 
 
