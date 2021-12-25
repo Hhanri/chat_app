@@ -67,6 +67,11 @@ class Strings {
   static const String messagesCollection = "messages";
   static const String messageModelTextMessage = "textMessage";
   static const String messageModelTimeStamp = "timeStamp";
+  static const String idsArrayFirestore = "userIds";
+  static const String roomIdFirestore = "roomId";
+  static const String lastMessageFirestore = "lastMessage";
+  static const String lastIdFirestore = "lastId";
+  static const String lastDateMesageFirestore = "lastDateMessage";
 
   //Firestore errors
   static const String getMessageError = "Erreur lors de la récupération des messages";

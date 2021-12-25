@@ -1,8 +1,10 @@
 import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/providers/authentication_provider.dart';
 import 'package:chat_app/providers/chat_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
+import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:chat_app/widgets/circular_progress_indicator_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,24 +28,29 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           FloatingSearchBar(
             hint: Strings.searchContacts,
+            hintStyle: MyTextStyles.formPlaceHolder.copyWith(
+              fontSize: 18
+            ),
             scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
             transitionDuration: const Duration(milliseconds: 800),
             transitionCurve: Curves.easeInOut,
             physics: const BouncingScrollPhysics(),
+            queryStyle: TextStyle(
+              color: MyColors.hintColor
+            ),
             axisAlignment: 0.0,
             openAxisAlignment: 0.0,
             width: 600,
             debounceDelay: const Duration(milliseconds: 500),
             onQueryChanged: (query) {
               setState(() {
-                _filteredUsers = ChatProvider.getUsers(query: query);
+                _filteredUsers = ChatProvider.getUsersFromName(query: query);
               });
             },
           // Specify a custom transition to be used for
           // animating between opened and closed stated.
             backgroundColor: MyColors.containerColor,
             accentColor: MyColors.hintColor,
-            hintStyle: MyTextStyles.formPlaceHolder,
             transition: CircularFloatingSearchBarTransition(),
             actions: [
               FloatingSearchBarAction(
@@ -69,22 +76,35 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: FutureBuilder<QuerySnapshot<dynamic>>(
                       future: _filteredUsers,
                       builder: (context, snapshot) {
-
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return CircularProgressIndicatorWidget();
                         } else {
                           if (snapshot.hasData) {
                             List<QueryDocumentSnapshot<dynamic>> _docs = snapshot.data!.docs;
                             List<UserModel?> _userModels = UserModel.decodeUsers(_docs);
+                            _userModels.removeWhere((element) => element?.userId == AuthenticationProvider().currentUser?.uid );
                             if (_userModels.length> 0) {
                               return ListView.builder(
                                 itemBuilder: (contextListView, index) {
                                   return ListTile(
-                                    onTap: () {
-                                      Navigator.of(context).pushNamed(
-                                        ROOM_PAGE,
-                                        arguments: _userModels[index]
+                                    onTap: () async {
+                                      NavigationUtils.showLoadingDialog(context);
+                                      await ChatProvider.getRoomFromSearch(
+                                        peerId: _userModels[index]?.userId ?? ""
+                                      ).then((value) {
+                                        Navigator.of(contextListView).pop();
+                                        String _roomId;
+                                        if (value.docs.isNotEmpty){
+                                          Map<String, dynamic>? _documentData = value.docs.single.data();
+                                          _roomId = _documentData[Strings.roomIdFirestore];
+                                        }
+                                        Navigator.of(contextListView).pushNamed(
+                                            ROOM_PAGE,
+                                            arguments: _userModels[index]
+                                        );
+                                      }
                                       );
+
                                     },
                                     leading: SizedBox(
                                       height: 45,
