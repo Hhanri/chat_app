@@ -9,7 +9,7 @@ class ChatProvider {
 
 
   static Future<QuerySnapshot<Map<String, dynamic>>> getRoomFromSearch({required String peerId}) {
-    List<String> _ids = _sortIds(peerId);
+    List<String> _ids = sortIds(peerId);
     return FirebaseFirestore.instance
       .collection(Strings.roomsCollection)
       .where(Strings.idsArrayFirestore, isEqualTo: _ids)
@@ -28,7 +28,7 @@ class ChatProvider {
   }
 
   static Stream<QuerySnapshot<dynamic>> getRoomMessages({required String peerId}){
-    List<String> _ids = _sortIds(peerId);
+    List<String> _ids = sortIds(peerId);
     return FirebaseFirestore.instance
       .collection(Strings.roomsCollection)
       .doc(_ids[0] +":"+ _ids[1])
@@ -40,7 +40,7 @@ class ChatProvider {
 
 
   static void setMessage({required String peerId, required String message}) {
-    List<String> _ids = _sortIds(peerId);
+    List<String> _ids = sortIds(peerId);
 
     MessageModel _messageModel = MessageModel(
       textMessage: message,
@@ -54,7 +54,7 @@ class ChatProvider {
       .add(MessageModel.toMap(_messageModel));
   }
 
-  static List<String> _sortIds(String peerId) {
+  static List<String> sortIds(String peerId) {
     List<String> _ids = [];
     String _currentUser = currentUser?.uid ?? UniqueKey().toString();
     _ids..add(_currentUser)

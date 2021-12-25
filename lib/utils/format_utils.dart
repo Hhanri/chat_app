@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-class FormatUtil {
+class FormatUtils {
 
 }
 

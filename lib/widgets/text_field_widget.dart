@@ -3,7 +3,7 @@ import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/widgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:chat_app/utils/format_util.dart';
+import 'package:chat_app/utils/format_utils.dart';
 
 class TextFieldWidget extends StatefulWidget {
 

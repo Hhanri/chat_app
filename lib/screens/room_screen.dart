@@ -9,7 +9,7 @@ import 'package:chat_app/widgets/message_container_widget.dart';
 import 'package:chat_app/widgets/text_field_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/utils/format_util.dart';
+import 'package:chat_app/utils/format_utils.dart';
 
 class RoomScreen extends StatefulWidget {
   final dynamic peerUserArgument;

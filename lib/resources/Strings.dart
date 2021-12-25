@@ -45,6 +45,8 @@ class Strings {
   static const String errorWrongPassword = "Le mot de passe ne correspond pas";
   static const String errorDisabledUser = "Ce compte est désactivé";
   static const String errorLogOut = "Erreur de déconnexion";
+  static const String errorGetRoomMessages = "Erreur lors de la récupération des conversations";
+  static const String errorGetUsers = "Erreur lors de la récupération des utilisateur";
 
   //Firebase error code
   static const String weakPasswordCode = "weak-password";
@@ -75,6 +77,7 @@ class Strings {
 
   //Firestore errors
   static const String getMessageError = "Erreur lors de la récupération des messages";
+  static const String getRoomError = "Errreur lors de l'ouverture de la conversation";
 
 
   //Null Safety

@@ -1,9 +1,11 @@
+import 'package:chat_app/models/room_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/providers/authentication_provider.dart';
 import 'package:chat_app/providers/chat_provider.dart';
 import 'package:chat_app/resources/Strings.dart';
 import 'package:chat_app/resources/theme.dart';
 import 'package:chat_app/utils/RouteGenerator.dart';
+import 'package:chat_app/utils/exceptions_utils.dart';
 import 'package:chat_app/utils/navigation_utils.dart';
 import 'package:chat_app/widgets/circular_progress_indicator_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -93,17 +95,31 @@ class _SearchScreenState extends State<SearchScreen> {
                                         peerId: _userModels[index]?.userId ?? ""
                                       ).then((value) {
                                         Navigator.of(contextListView).pop();
-                                        String _roomId;
+                                        String? _roomId;
                                         if (value.docs.isNotEmpty){
                                           Map<String, dynamic>? _documentData = value.docs.single.data();
                                           _roomId = _documentData[Strings.roomIdFirestore];
                                         }
                                         Navigator.of(contextListView).pushNamed(
                                             ROOM_PAGE,
-                                            arguments: _userModels[index]
+                                            arguments: RoomModel(
+                                              roomId: _roomId,
+                                              peerUser: _userModels[index],
+                                              userIds: ChatProvider.sortIds(_userModels[index]?.userId ?? "")
+                                            )
                                         );
                                       }
-                                      );
+                                      ).catchError((error, stackTrace) {
+                                        ExceptionUtils.printCatchError(
+                                          error: error,
+                                          stackTrace: stackTrace
+                                        );
+                                        Navigator.of(contextListView).pop();
+                                        NavigationUtils.showMyDialog(
+                                          context: contextListView,
+                                          bodyText: Strings.getRoomError
+                                        );
+                                      });
 
                                     },
                                     leading: SizedBox(
