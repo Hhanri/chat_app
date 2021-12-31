@@ -94,7 +94,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       birthDate: _birthDate,
                                       context: context
                                   );
-
                                 }
                               } else {
                                 NavigationUtils.showMyDialog(

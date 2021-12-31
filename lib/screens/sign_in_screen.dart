@@ -19,6 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
   //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _email = "";
   String _password = "";
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +52,38 @@ class _SignInScreenState extends State<SignInScreen> {
               Spacer(),
               Expanded(
                 flex: 6,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextFieldWidget(
-                      valueChanged: (value) {
-                        _email = value;
-                      },
-                      textFieldParameters: EmailTextFieldParameters(),
-                    ),
-                    TextFieldWidget(
-                      valueChanged: (value) {
-                        _password = value;
-                      },
-                      textFieldParameters: PasswordTextFieldParameters(),
-                    ),
-                    ButtonWidget(
-                      buttonText: Strings.signIn,
-                      onPressed:() {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        AuthenticationProvider().signIn(
-                          email: _email,
-                          password: _password,
-                          context: context //_scaffoldKey.currentState?.context ?? context
-                        );
-                      }
-                    )
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextFieldWidget(
+                        valueChanged: (value) {
+                          _email = value;
+                        },
+                        textFieldParameters: EmailTextFieldParameters(),
+                      ),
+                      TextFieldWidget(
+                        valueChanged: (value) {
+                          _password = value;
+                        },
+                        textFieldParameters: PasswordTextFieldParameters(),
+                      ),
+                      ButtonWidget(
+                        buttonText: Strings.signIn,
+                        onPressed:() {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          if (_formKey.currentState!.validate()){
+                            AuthenticationProvider().signIn(
+                              email: _email,
+                              password: _password,
+                              context: context //_scaffoldKey.currentState?.context ?? context
+                            );
+                          }
+                        }
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
