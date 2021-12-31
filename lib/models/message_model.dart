@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chat_app/resources/Strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,7 +31,7 @@ class MessageModel{
   static String encodeMessages(List<MessageModel?> messages) {
     return json.encode(
         messages.map(
-                (message) => MessageModel.toMap(message!))
+          (message) => MessageModel.toMap(message!))
     );
   }
 

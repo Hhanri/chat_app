@@ -19,10 +19,6 @@ class ButtonWidget extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: MySizes.minimumHeightInput,
         ),
-        decoration: BoxDecoration(
-          borderRadius: MyShapes.circularBorders,
-          color: MyColors.primary
-        ),
         child: Text(
           buttonText
         )

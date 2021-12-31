@@ -84,7 +84,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(
                             buttonText: Strings.signUp,
                             onPressed: () {
-                              print(ModalRoute.of(context)?.settings.name);
                               FocusScope.of(context).requestFocus(FocusNode());
                               if (_TOScheck == true) {
                                 if (_formKey.currentState!.validate()) {

@@ -40,6 +40,7 @@ class Strings {
   static const String weakPassword = "Le mot de passe est trop faible";
   static const String emailAlreadyUsed = "L'email renseigné est déjà utilisé";
   static const String errorIsNotEmail = "L'email renseigné n'est pas valide";
+  static const String errorIsNotDate = "Veuillez saisir une date valide";
   static const String errorTOSNotChecked = "Veuillez accepter les CGU";
   static const String errorUserNotFound = "L'utilisateur n'existe pas";
   static const String errorWrongPassword = "Le mot de passe ne correspond pas";

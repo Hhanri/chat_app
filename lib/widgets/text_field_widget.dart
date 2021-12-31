@@ -43,7 +43,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       _textFieldParamaters.iconTap = _revealObscureText;
     }
     if (_textFieldParamaters is DateTextFieldParameters) {
-      _textFieldParamaters.readOnly = true;
       _textFieldParamaters.iconTap = _tapFunction;
       _textFieldParamaters.onTap= _tapFunction;
     };
@@ -129,7 +128,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     if (_textFieldParamaters is EmailTextFieldParameters) {
       if(!value.isValidEmail()) {
         return Strings.errorIsNotEmail;
-      }
+      } //else if (_textFieldParamaters is DateTextFieldParameters) {
+        //if (!value.isValidDate()) {
+          //print("wrong date format");
+          //return Strings.errorIsNotDate;
+        //}
+      //}
     }
     widget.valueChanged(value);
     return null;
@@ -212,6 +216,7 @@ class DateTextFieldParameters extends TextFieldParamaters {
       hintText: hintText,
       autoCorrect: false,
       iconWidget: iconWidget,
+      readOnly: true,
       textInputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9/]"))]
   );
 }

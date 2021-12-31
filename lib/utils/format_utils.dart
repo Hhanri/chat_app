@@ -18,6 +18,12 @@ extension FormatDate on DateTime? {
   }
 }
 
+//extension DateValidator on String {
+//  bool isValidDate() {
+//    return this == DateFormat('dd/MM/yyyy').format(DateTime.parse(this));
+//  }
+//}
+
 extension DateToStringMessages on DateTime {
   String parseDataToStringMessages() {
     return DateFormat("dd/MM/yyyy - HH:mm").format(this);
